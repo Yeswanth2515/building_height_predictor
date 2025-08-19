@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Building Height Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Predict Max Building Height</h1>
+
+        <form method="POST" action="/predict">
+
+            <label>Soil Type:</label>
+            <select name="soil">
+                <option>Loam</option>
+                <option>Clay</option>
+                <option>Sandy</option>
+                <option>Silty</option>
+                <option>Peaty</option>
+                <option>Chalky</option>
+            </select>
+
+            <label>Moisture (%):</label>
+            <input name="moisture" type="number" step="1">
+            <small class="hint">Moisture should be between 10–35%</small>
+
+            <label>Clay (%):</label>
+            <input name="clay" type="number" step="1">
+            <small class="hint">Typical range: 20% - 40%</small>
+
+            <label>Sand (%):</label>
+            <input name="sand" type="number" step="1">
+            <small class="hint">Generally 30% - 70%</small>
+
+            <label>Silt (%):</label>
+            <input name="silt" type="number" step="1">
+            <small class="hint">Recommended: 5% - 30%</small>
+
+            <label>pH:</label>
+            <input name="ph" type="number" step="0.1">
+            <small class="hint">Ideal range: 5.5 - 7.5</small>
+
+            <label>Bearing Capacity (kPa):</label>
+            <input name="bc" type="number" step="1">
+            <small class="hint">Expected: 100 - 300 kN/m²</small>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if result %}
+            <h2>{{ result }}</h2>
+        {% endif %}
+    </div>
+</body>
+</html>
